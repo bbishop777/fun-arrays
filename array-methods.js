@@ -28,10 +28,9 @@ function findOverHundredK (element, index, array) {
 var roundedDollar = dataset.bankBalances.map(roundBalances);
 
 function roundBalances(element, index, array) {
-  element.rounded = Math.round(element.amount);
-  return element;
+  return {amount: element.amount, state: element.state, rounded: Math.round(element.amount)
+  };
 }
-
 /*
   set a the `amount` value for each object in bankBalances
   to the value of `amount` rounded to the nearest 10 cents
@@ -42,7 +41,15 @@ function roundBalances(element, index, array) {
     }
   assign the resulting array to `roundedDime`
 */
-var roundedDime = null;
+var roundedDime = dataset.bankBalances.map(roundBalancesByDec);
+
+function roundBalancesByDec(element, index, array) {
+  return {
+    amount: Math.round(element.amount * 10) / 10,
+    state: element.state
+  };
+}
+console.log(dataset.bankBalances);
 
 // set sumOfBankBalances to the sum of all amounts in bankBalances
 var sumOfBankBalances = null;
