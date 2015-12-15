@@ -49,10 +49,17 @@ function roundBalancesByDec(element, index, array) {
     state: element.state
   };
 }
-console.log(dataset.bankBalances);
+
 
 // set sumOfBankBalances to the sum of all amounts in bankBalances
-var sumOfBankBalances = null;
+var sumOfBankBalances = dataset.bankBalances.reduce(totalInBank, 0);
+
+function totalInBank(previousValue, currentValue, index, array) {
+  sum = previousValue + parseFloat(currentValue.amount);
+  sum = (Math.round(sum * 100)) /100;
+  //console.log(Math.round(sum *100)/100);
+  return sum;
+}
 
 /*
   set sumOfInterests to the sum of the 18.9% interest
