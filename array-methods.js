@@ -5,18 +5,12 @@ var dataset = require('./dataset.json');
   greater than 100000.00
   assign the resulting array to `hundredThousandairs`
 */
-console.log(dataset.bankBalances.length);
-
 var hundredThousandairs = dataset.bankBalances.filter(findOverHundredK);
 
 function findOverHundredK (element, index, array) {
-  console.log(element.amount);
   if(element.amount >100000) {
     return element;
   }
-  // else {
-  //   //console.log("Rejected", element);
-  // }
 }
 
 
@@ -31,7 +25,12 @@ function findOverHundredK (element, index, array) {
     }
   assign the resulting array to `roundedDollar`
 */
-var roundedDollar = null;
+var roundedDollar = dataset.bankBalances.map(roundBalances);
+
+function roundBalances(element, index, array) {
+  element.rounded = Math.round(element.amount);
+  return element;
+}
 
 /*
   set a the `amount` value for each object in bankBalances
